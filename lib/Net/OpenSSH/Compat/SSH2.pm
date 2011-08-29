@@ -51,7 +51,8 @@ sub import {
             ${"${pkg}::VERSION"} = __PACKAGE__->version;
         }
     }
-    __PACKAGE__->export_to_level(1, @_);
+    __PACKAGE__->export_to_level(1, $class,
+                                 grep $_ ne ':supplant', @_));
 }
 
 sub version { "1.2.6 (".__PACKAGE__."-$VERSION)" }
@@ -681,7 +682,9 @@ sub _state { shift->_hash->{state} }
 
 1;
 
-=head1
+__END__
+
+=head1 NAME
 
 Net::OpenSSH::Compat::SSH2 - Net::OpenSSH adapter for Net::SSH2 API compatibility
 
@@ -755,13 +758,11 @@ Extra options passed to C<Net::SFTP::Foreign::new> constructor.
 B<This is a work in progress.>
 
 Besides that, there are some functionality of Net::SSH2 that can not
-be emulated with Net::SSH2. Fortunatelly, the missing bits are rarely
+be emulated with Net::OpenSSH. Fortunatelly, the missing bits are rarely
 used so probably you may not need them at all.
 
 Specifically, the return values from the C<$ssh2-E<gt>method($ATTR)>
-are not real but faked ones.
-
-C<auth_list> return value is also faked.
+are not real but faked ones. C<auth_list> return value is also faked.
 
 Anyway, if your Net::SSH2 script fails, fill a bug report at the CPAN
 RT bugtracker
