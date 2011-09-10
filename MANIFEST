@@ -10,5 +10,7 @@ Makefile.PL
 MANIFEST
 README
 t/Net-OpenSSH-Compat.t
+t/Net-SSH.t
+t/Net-SSH-Perl.t
 t/pods.t
 META.yml                                 Module meta-data (added by MakeMaker)
